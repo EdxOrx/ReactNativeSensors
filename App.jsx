@@ -19,7 +19,7 @@ function App(){
 
   return (
     <SafeAreaView style={styles.container}>
-      {true ? <Home /> : <Login setLogin={setIsLoggedIn}/>}
+      {isLoggedIn ? <Home /> : <Login setLogin={setIsLoggedIn}/>}
     </SafeAreaView>
   );
 }

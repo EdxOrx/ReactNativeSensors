@@ -8,14 +8,15 @@ import {
   Alert,
 } from 'react-native';
 import {
-    useCameraDevice,
+  useCameraDevices ,
     Camera,
 } from 'react-native-vision-camera';
 import Geolocation from '@react-native-community/geolocation';
 
 function Vision(){
     const [cameraPermission, setCameraPermission] = useState(null);
-    const device = useCameraDevice('back');
+    const devices = useCameraDevices();
+    const device = devices[0];
     const camera = useRef(null);
     const [capturedPhoto, setCapturedPhoto] = useState(null);
     const [showPreview, setShowPreview] = useState(false);
@@ -80,6 +81,10 @@ function Vision(){
       setCapturedPhoto(null);
       setShowPreview(false);
     };
+
+    if (!device) {
+      return <Text>No camera available</Text>;
+    }
 
     return (
       <View style={{ flex: 1 }}>
